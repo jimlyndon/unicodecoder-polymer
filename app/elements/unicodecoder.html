@@ -1,0 +1,14 @@
+<!-- Import Polymer -->
+<link rel="import" href="../bower_components/polymer/polymer.html">
+
+<!-- Define your custom element -->
+<polymer-element name="x-unicodecoder">
+    <template>
+        <link rel="stylesheet" href="unicodecoder.css">
+        <div id="container">
+            <input id="input" type="text" on-keyup="{{onKeyup}}" on-focus="{{onFocus}}">
+            <div id="output"></div>
+        </div>
+    </template>
+    <script src="unicodecoder.js"></script>
+</polymer-element>
