@@ -1,53 +1,54 @@
-function update() {
-	var inputStr = document.getElementById("input").value;
-	var outputStr = "<table border='0'><tr>";
-	for (var i=0; i<inputStr.length; i++) //row of characters
-		outputStr += "<td>" + inputStr.charAt(i) + "</td>";
-	outputStr += "</tr><tr class='code'>";
-	for (var i=0; i<inputStr.length; i++) //row of codes (decimal)
-		outputStr += "<td>" + inputStr.charCodeAt(i) + "</td>";
-	outputStr += "</tr><tr class='code'>";
-	for (var i=0; i<inputStr.length; i++) //row of codes (hex)
-		outputStr += "<td>0x" + inputStr.charCodeAt(i).toString(16).toUpperCase() + "</td>";
-	outputStr += "</tr><tr class='code'>";
-	for (var i=0; i<inputStr.length; i++) //row of codes with '&#' and ';'
-		outputStr += "<td>" + "&amp;#" + inputStr.charCodeAt(i) + ";</td>";
-	outputStr += "</tr><tr class='code'>";
-	for (var i=0; i<inputStr.length; i++) //row of codes with '&#x' and ';' in hex format
-		outputStr += "<td>" + "&amp;#x" + inputStr.charCodeAt(i).toString(16).toUpperCase() + ";</td>";
-	outputStr += "</tr><tr class='code'>";
-	for (var i=0; i<inputStr.length; i++) //row of codes beginning with \u for javascript
-		outputStr += "<td>" + "\\u" + formatUnicodeHex(inputStr.charCodeAt(i)) + "</td>";
-	outputStr += "</tr><tr class='code'>";
-	for (var i=0; i<inputStr.length; i++) //row of codes with 'U+' and hex value
-		outputStr += "<td>U+" + formatUnicodeHex(inputStr.charCodeAt(i)) + "</td>";
-	outputStr += "</tr></table>";
-	document.getElementById("output").innerHTML = outputStr;
+function getCharacters() {
+	var value = document.getElementById('input').value;
+	this.characters = value ? value.split('') : [];
 }
 
-//takes a number variable representing a unicode char code and formats it in
-//a U+0000 format with 0000 being a hex value with four (or more) digits
-//if the hex value is less than four digits, it will be left padded with zeroes
-function formatUnicodeHex(dval)
-{
-	var hval = dval.toString(16).toUpperCase();
-	if (hval.length == 2)
-		hval = "00" + hval;
-	else if (hval.length == 3)
-		hval = "0" + hval;
-	return hval;
+function unicodePad(value) {
+	// new variable needed to keep coercion to base16 during concatenation
+	var b16 = base16(value);
+	switch (b16.length)
+	{
+		case 2:
+			return '00' + b16;
+		case 3:
+			return '0' + b16;
+		default:
+			return b16;
+	}
 }
 
-function showHelp()
-{
-	alert("Have one or more characters, but want to know their unicode values?\nPaste em' into the box and voila!");
+function base16(value) {
+	return value.toString(16).toUpperCase();
 }
 
 Polymer('x-unicodecoder', {
+	characters: [],
+	code: function(value) {
+		return value.charCodeAt(0);
+	},
+	hex: function(value) {
+		return '0x' + base16(value);
+	},
+	htmlEntity: function(value) {
+		var prepend = '&#';
+
+		if(value[0]=='0' && value[1]=='x')
+			return prepend + value.slice(1);
+
+		return prepend + value;
+	},
+	codeValue: function(value) {
+		return 'U+' + unicodePad(value);
+
+	},
+	escSeq: function(value) {
+		return '\\u' + unicodePad(value);
+
+	},
 	onKeyup: function() {
-		update();
+		getCharacters.call(this);
 	},
 	onFocus: function() {
-		update();
+		getCharacters.call(this);
 	}
 });
