@@ -4,6 +4,16 @@
   "authors": [
     "jim lyndon <jimlyndon@live.com>"
   ],
+  "description": "An awesome Polymer element.",
+  "keywords": [
+    "Polymer",
+    "web-components",
+    "unicode",
+    "escape",
+    "unescape",
+    "encode",
+    "decode"
+  ],
   "license": "MIT",
   "ignore": [
     "**/.*",
@@ -13,7 +23,8 @@
     "test",
     "tests"
   ],
+  "homepage": "https://github.com/jimlyndon/unicodecoder-polymer",
   "dependencies": {
-    "polymer": "Polymer/polymer#~0.2.3"
+    "polymer": "~0.2.3"
   }
 }
