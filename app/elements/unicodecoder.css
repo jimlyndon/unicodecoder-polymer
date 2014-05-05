@@ -10,11 +10,11 @@ input[type=text] {
 }
 
 #output {
-    text-align: center;
 }
 
 table {
     /*margin: auto;*/
+    text-align: center;
     border-width: 0px
 }
 

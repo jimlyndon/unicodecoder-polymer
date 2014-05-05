@@ -1,14 +1,47 @@
 <!-- Import Polymer -->
 <link rel="import" href="../bower_components/polymer/polymer.html">
 
-<!-- Define your custom element -->
 <polymer-element name="x-unicodecoder">
     <template>
         <link rel="stylesheet" href="unicodecoder.css">
-        <div id="container">
-            <input id="input" type="text" on-keyup="{{onKeyup}}" on-focus="{{onFocus}}">
-            <div id="output"></div>
-        </div>
+        <input id="input" type="text" on-keyup="{{onKeyup}}" on-focus="{{onFocus}}">
+        <table>
+            <tr class="code">
+                <template repeat="{{ character in characters }}">
+                    <td>{{ character }}</td>
+                </template>
+            </tr>
+            <tr class="code">
+                <template repeat="{{ character in characters }}">
+                    <td>{{ character | code }}</td>
+                </template>
+            </tr>
+            <tr class="code">
+                <template repeat="{{ character in characters }}">
+                    <td>{{ character | code | hex }}</td>
+                </template>
+            </tr>
+            <tr class="code">
+                <template repeat="{{ character in characters }}">
+                    <td>{{ character | code | htmlEntity }}</td>
+                </template>
+            </tr>
+            <tr class="code">
+                <template repeat="{{ character in characters }}">
+                    <td>{{ character | code | hex | htmlEntity }}</td>
+                </template>
+            </tr>
+            <tr class="code">
+                <template repeat="{{ character in characters }}">
+                    <td>{{ character | code | escSeq }}</td>
+                </template>
+            </tr>
+            <tr class="code">
+                <template repeat="{{ character in characters }}">
+                    <td>{{ character | code | codeValue }}</td>
+                </template>
+            </tr>
+        </table>
     </template>
     <script src="unicodecoder.js"></script>
 </polymer-element>

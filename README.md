@@ -2,6 +2,13 @@
 
 > Unicode Character Reverse Lookup
 
+Rebuilt Brett Tolbert's lookup utility, that I've used for years, as a self contained polymer web component.
+See below instructions for usage.
+
+Also, see the [original](http://www.bretttolbert.com/projects/charcode/) (it uses string building and innerHtml)
+
+For a deeper understanding of escaping and encoding, take a look at [jsescape](http://0xcc.net/jsescape/)
+
 ## Demo
 
 [Check it live!](http://jimlyndon.github.io/unicodecoder-polymer)
@@ -33,7 +40,7 @@ Or [download as ZIP](https://github.com/jimlyndon/unicodecoder-polymer/archive/m
 3. Start using it!
 
     ```html
-    <unicodecoder></unicodecoder>
+    <x-unicodecoder></x-unicodecoder>
     ```
 
 ## Development
