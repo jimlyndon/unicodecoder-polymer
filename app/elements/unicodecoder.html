@@ -6,37 +6,37 @@
         <link rel="stylesheet" href="unicodecoder.css">
         <input id="input" type="text" on-keyup="{{onKeyup}}" on-focus="{{onFocus}}">
         <table>
-            <tr class="code">
+            <tr>
                 <template repeat="{{ character in characters }}">
                     <td>{{ character }}</td>
                 </template>
             </tr>
-            <tr class="code">
+            <tr>
                 <template repeat="{{ character in characters }}">
                     <td>{{ character | code }}</td>
                 </template>
             </tr>
-            <tr class="code">
+            <tr>
                 <template repeat="{{ character in characters }}">
                     <td>{{ character | code | hex }}</td>
                 </template>
             </tr>
-            <tr class="code">
+            <tr>
                 <template repeat="{{ character in characters }}">
                     <td>{{ character | code | htmlEntity }}</td>
                 </template>
             </tr>
-            <tr class="code">
+            <tr>
                 <template repeat="{{ character in characters }}">
                     <td>{{ character | code | hex | htmlEntity }}</td>
                 </template>
             </tr>
-            <tr class="code">
+            <tr>
                 <template repeat="{{ character in characters }}">
                     <td>{{ character | code | escSeq }}</td>
                 </template>
             </tr>
-            <tr class="code">
+            <tr>
                 <template repeat="{{ character in characters }}">
                     <td>{{ character | code | codeValue }}</td>
                 </template>
